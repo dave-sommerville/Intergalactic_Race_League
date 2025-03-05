@@ -1,3 +1,8 @@
+using Microsoft.EntityFrameworkCore;
+using Intergalactic_Race_League.DAL;
+using Intergalactic_Race_League.Models;
+using System;
+
 namespace Intergalactic_Race_League
 {
     public class Program
@@ -5,6 +10,9 @@ namespace Intergalactic_Race_League
         public static void Main(string[] args)
         {
             var builder = WebApplication.CreateBuilder(args);
+            // Configure EF Core with SQL Server
+            builder.Services.AddDbContext<IrlDbContext>(options =>
+                options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection")));
 
             // Add services to the container.
             builder.Services.AddControllersWithViews();
