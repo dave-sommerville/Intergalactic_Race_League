@@ -1,12 +1,22 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using Intergalactic_Race_League.DAL;
+using Intergalactic_Race_League.Models;
 
 namespace Intergalactic_Race_League.BLL
 {
-    class VehicleService
+    public class VehicleService
     {
+        private readonly VehicleRepository _vehicleReposity;
+        public VehicleService(VehicleRepository vehicleRepository)
+        {
+            _vehicleReposity = vehicleRepository;
+        }
+        public List<Vehicle> GetVehicles()
+        {
+            return _vehicleReposity.GetAllVehicles();
+        }
+        public void AddVehicle(Vehicle vehicle)
+        {
+
+        }
     }
 }

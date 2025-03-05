@@ -1,12 +1,22 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using Intergalactic_Race_League.Models;
 
 namespace Intergalactic_Race_League.DAL
 {
-    class TournamentRepository
+    public class TournamentRepository
     {
+        private readonly IrlDbContext _context;
+        public TournamentRepository(IrlDbContext context)
+        {
+            _context = context;
+        }
+        public List<Tournament> GetAllTournamnets()
+        {
+            return _context.Tournaments.ToList();
+        }
+        public void AddTournament(Tournament tournament)
+        {
+            _context.Tournaments.Add(tournament);
+            _context.SaveChanges();
+        }
     }
 }
