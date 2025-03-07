@@ -30,9 +30,22 @@ namespace Intergalactic_Race_League.Controllers
                 Racer racer = new Racer
                 {
                     DriverName = racerVehicle.Racer.DriverName,
-                    DriverHeightInCm = racerVehicle.Racer.DriverHeightInCm
+                    DriverAge = racerVehicle.Racer.DriverAge,
+                    DriverHeightInCm = racerVehicle.Racer.DriverHeightInCm,
+                    DriverCountry = racerVehicle.Racer.DriverCountry
                 };
-                
+                Vehicle vehicle = new Vehicle
+                {
+                    Model = racerVehicle.Vehicle.Model,
+                    Type = racerVehicle.Vehicle.Type
+                };
+                RacerVehicle newRacerVehicle = new RacerVehicle
+                {
+                    VehicleId = vehicle.VehicleId,
+                    Vehicle = vehicle,
+                    RacerId = racer.RacerId,
+                    Racer = racer
+                };
             }
             return View(racerVehicle);
         }

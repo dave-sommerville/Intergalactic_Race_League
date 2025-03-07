@@ -6,6 +6,7 @@
 			<th>Racer Name</th>
 			<th>---</th>
 			<th>Vehicle</th>
+			<th>___</th>
 			<th>Delete</th>
 		</tr>
 	</thead>
@@ -14,10 +15,15 @@
 		{
 			<tr>
 				<td>@racerVehicle.Racer.DriverName</td>
-				<td>---</td>
+				<td>
+					<a href="/Racer/Details/@racerVehicle.Racer.RacerId">Details</a>
+				</td>
 				<td>@racerVehicle.Vehicle.VehicleId</td>
 				<td>
-					<a href="/RacerVehicle/Delete/@racerVehicle.RacerVehicleId">Delete</a>
+					<a href="/Racer/Details/@racerVehicle.Racer.RacerId">Details</a>
+				</td>
+				<td>
+					<a href="/RacerVehicle/Delete/@racerVehicle.RacerVehicleId">Delete Pair</a>
 				</td>
 			</tr>
 		}

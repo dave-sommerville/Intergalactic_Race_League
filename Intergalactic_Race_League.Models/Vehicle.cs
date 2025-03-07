@@ -2,9 +2,14 @@
 {
     public class Vehicle
     {
+        private static int _nextId;
         public int VehicleId { get; set; } 
         public string Model { get; set; }
         public string Type { get; set; }
+        public Vehicle()
+        {
+            VehicleId = _nextId++;
+        }
 
     }
 }

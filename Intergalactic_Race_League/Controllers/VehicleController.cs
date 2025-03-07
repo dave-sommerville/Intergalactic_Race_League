@@ -7,7 +7,6 @@ namespace Intergalactic_Race_League.Controllers
     public class VehicleController : Controller
     {
         private readonly VehicleService _vehicleService;
-        private static int _nextId = 1;
         public VehicleController(VehicleService vehicleService)
         {
             _vehicleService = vehicleService;
@@ -30,7 +29,6 @@ namespace Intergalactic_Race_League.Controllers
             {
                 Vehicle newVehicle = new Vehicle
                 {
-                    //Need Id
                     Model = vehicle.Model,
                     Type = vehicle.Type
                 };
@@ -60,7 +58,7 @@ namespace Intergalactic_Race_League.Controllers
             return RedirectToAction("Index");
         }
         [HttpGet]
-        public IActionResult Delete()
+        public IActionResult Delete(int id)
         {
             Vehicle vehicle = _vehicleService.GetVehicleById(id);
             if(vehicle == null)

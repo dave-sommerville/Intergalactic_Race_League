@@ -7,9 +7,11 @@ namespace Intergalactic_Race_League.Controllers
     public class TournamentController : Controller
     {
         private readonly TournamentService _tournamentService;
-        public TournamentController(TournamentService tournamentService)
+        private readonly RaceService _raceService;
+        public TournamentController(TournamentService tournamentService, RaceService raceService)
         {
             _tournamentService = tournamentService;
+            _raceService = raceService;
         }
         [HttpGet]
         public IActionResult Index()

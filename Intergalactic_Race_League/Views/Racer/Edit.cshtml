@@ -1,9 +1,9 @@
 ﻿@model Racer
 <h2>Edit Racer</h2>
-<form asp-action="Edit" mehtod="post">
-	<input type="hidden" asp-for="RacerId"/>
+<form asp-action="Edit" method="post">
+	<input type="hidden" asp-for="RacerId" />
 	<div class="form-group">
-		<label asp-for="DiverName" ></label>
+		<label asp-for="DriverName"></label>
 		<input asp-for="DriverName" />
 		<span asp-validation-for="DriverName" class="text-danger"></span>
 	</div>
@@ -12,13 +12,13 @@
 		<input asp-for="DriverAge" />
 		<span asp-validation-for="DriverAge" class="text-danger"></span>
 	</div>
-		<div class="form-group">
-		<label asp-for="DiverHeightInCm" ></label>
+	<div class="form-group">
+		<label asp-for="DriverHeightInCm"></label>
 		<input asp-for="DriverHeightInCm" />
 		<span asp-validation-for="DriverHeightInCm" class="text-danger"></span>
 	</div>
 	<div class="form-group">
-		<label asp-for="DiverCountry"></label>
+		<label asp-for="DriverCountry"></label>
 		<input asp-for="DriverCountry" />
 		<span asp-validation-for="DriverCountry" class="text-danger"></span>
 	</div>

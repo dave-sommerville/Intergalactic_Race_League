@@ -7,9 +7,12 @@ namespace Intergalactic_Race_League.BLL
     public class RacerVehicleService
     {
         private readonly RacerRepository _racerRepository;
-        private 
-        public RacerVehicleService(RacerVehicleRepository racerVehicleRepository)
+        private readonly VehicleRepository _vehicleRepository;
+        private readonly RacerVehicleRepository _racerVehicleRepository;
+        public RacerVehicleService(RacerRepository racerRepository, VehicleRepository vehicleRepository, RacerVehicleRepository racerVehicleRepository)
         {
+            _racerRepository = racerRepository;
+            _vehicleRepository = vehicleRepository;
             _racerVehicleRepository = racerVehicleRepository;
         }
         public List<RacerVehicle> GetRacerVehicles()
@@ -21,7 +24,10 @@ namespace Intergalactic_Race_League.BLL
             Racer racer = new Racer
             {
                 DriverName = racerVehicle.Racer.DriverName,
-                DriverHeightInCm = racerVehicle.Racer.DriverHeightInCm
+                DriverAge = racerVehicle.Racer.DriverAge,
+                DriverHeightInCm = racerVehicle.Racer.DriverHeightInCm,
+                DriverCountry = racerVehicle.Racer.DriverCountry
+
             };
             Vehicle vehicle = new Vehicle
             {

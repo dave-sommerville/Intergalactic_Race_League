@@ -18,5 +18,23 @@ namespace Intergalactic_Race_League.DAL
             _context.Tournaments.Add(tournament);
             _context.SaveChanges();
         }
+        public Tournament GetTournamentById(int id)
+        {
+            return _context.Tournaments.Find(id);
+        }
+        public void UpdateTournament(Tournament tournament)
+        {
+            _context.Tournaments.Update(tournament);
+            _context.SaveChanges();
+        }
+        public void DeleteTournament(int id)
+        {
+            Tournament tournament = _context.Tournaments.Find(id);
+            if (tournament != null)
+            {
+                _context.Remove(tournament);
+                _context.SaveChanges();
+            }
+        }
     }
 }

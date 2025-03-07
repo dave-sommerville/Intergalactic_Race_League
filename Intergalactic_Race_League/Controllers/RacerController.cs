@@ -8,7 +8,6 @@ namespace Intergalactic_Race_League.Controllers
     public class RacerController : Controller
     {
         private readonly RacerService _racerService;
-        private static int _nextId = 1;
         public RacerController(RacerService racerService)
         {
             _racerService = racerService;
@@ -32,7 +31,6 @@ namespace Intergalactic_Race_League.Controllers
             {
                 Racer newRacer = new Racer
                 {
-                    // Need id
                     DriverName = racer.DriverName,
                     DriverAge = racer.DriverAge,
                     DriverHeightInCm = racer.DriverHeightInCm,
