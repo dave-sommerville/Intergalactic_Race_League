@@ -7,6 +7,7 @@ namespace Intergalactic_Race_League.Controllers
     public class RacerController : Controller
     {
         private readonly RacerService _racerService;
+        private static int _nextId = 1;
         public RacerController(RacerService racerService)
         {
             _racerService = racerService;
@@ -20,6 +21,7 @@ namespace Intergalactic_Race_League.Controllers
         [HttpGet]
         public IActionResult Create()
         {
+            //ViewBag. options 
             return View();
         }
         [HttpPost]
@@ -35,6 +37,20 @@ namespace Intergalactic_Race_League.Controllers
                 return RedirectToAction("Index");
             }
             return View(racer);
+        }
+        [HttpPost]
+        public IActionResult Create(Racer newRacer, int selectedVehicle, int[] selectedRaceParticipants, int[] selectedRaceResults)
+        {
+
+            if (ModelState.IsValid)
+            {
+                newRacer.RacerId = _nextId++;
+                newRacer.Vehicle = VehicleController.GetVehicles().Where(s => selectedVehicle.Contains(v.VehicleId)).ToList();
+                newCase.CollectedEvidence = EvidenceController.GetEvidence().Where(s => selectedEvidence.Contains(s.EvidenceID)).ToList();
+                _case.Add(newCase);
+                return RedirectToAction("Index");
+            }
+            return View(newCase);
         }
         // Need edit and delete
     }

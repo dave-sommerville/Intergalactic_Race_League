@@ -1,12 +1,22 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using Intergalactic_Race_League.Models;
 
 namespace Intergalactic_Race_League.DAL
 {
-    class RaceRepository
+    public class RaceRepository
     {
+        private readonly IrlDbContext _context;
+        public RaceRepository(IrlDbContext context)
+        {
+            _context = context;
+        }
+        public List<Race> GetAllRaces()
+        {
+            return _context.Races.ToList();
+        }
+        public void AddRace(Race race)
+        {
+            _context.Races.Add(race);
+            _context.SaveChanges();
+        }
     }
 }

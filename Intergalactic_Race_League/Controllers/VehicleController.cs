@@ -7,6 +7,7 @@ namespace Intergalactic_Race_League.Controllers
     public class VehicleController : Controller
     {
         private readonly VehicleService _vehicleService;
+        private static int _nextId = 1;
         public VehicleController(VehicleService vehicleService)
         {
             _vehicleService = vehicleService;

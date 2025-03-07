@@ -22,8 +22,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Views\RaceParticipant\" />
-    <Folder Include="Views\RaceResult\" />
     <Folder Include="Views\Race\" />
     <Folder Include="Views\Tournament\" />
     <Folder Include="Views\Vehicle\" />

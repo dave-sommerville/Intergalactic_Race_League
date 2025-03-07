@@ -1,0 +1,25 @@
+﻿@model IEnumerable<RacerVehicle>
+<h1>All Racers and Assigned Vehicle</h1>
+<table class="table">
+	<thead>
+		<tr>
+			<th>Racer Name</th>
+			<th>---</th>
+			<th>Vehicle</th>
+			<th>Delete</th>
+		</tr>
+	</thead>
+	<tbody>
+		@foreach (RacerVehicle racerVehicle in Model)
+		{
+			<tr>
+				<td>@racerVehicle.Racer.DriverName</td>
+				<td>---</td>
+				<td>@racerVehicle.Vehicle.VehicleId</td>
+				<td>
+					<a href="/RacerVehicle/Delete/@racerVehicle.RacerVehicleId">Delete</a>
+				</td>
+			</tr>
+		}
+	</tbody>
+</table>
