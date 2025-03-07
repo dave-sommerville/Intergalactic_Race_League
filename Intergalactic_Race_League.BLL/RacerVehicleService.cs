@@ -6,7 +6,8 @@ namespace Intergalactic_Race_League.BLL
 {
     public class RacerVehicleService
     {
-        private readonly RacerVehicleRepository _racerVehicleRepository;
+        private readonly RacerRepository _racerRepository;
+        private 
         public RacerVehicleService(RacerVehicleRepository racerVehicleRepository)
         {
             _racerVehicleRepository = racerVehicleRepository;

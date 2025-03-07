@@ -24,7 +24,6 @@
   <ItemGroup>
     <Folder Include="Views\Race\" />
     <Folder Include="Views\Tournament\" />
-    <Folder Include="Views\Vehicle\" />
   </ItemGroup>
 
 </Project>

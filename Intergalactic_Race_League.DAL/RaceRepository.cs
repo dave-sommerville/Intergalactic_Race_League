@@ -22,10 +22,5 @@ namespace Intergalactic_Race_League.DAL
         {
             return _context.Racers.Find(id);
         }
-        public void UpdateRacer(Racer racer)
-        {
-            _context.Racers.Update(racer);
-            _context.SaveChanges();
-        }
     }
 }

@@ -16,7 +16,25 @@ namespace Intergalactic_Race_League.BLL
         }
         public void AddVehicle(Vehicle vehicle)
         {
-
+            if(string.IsNullOrWhiteSpace(vehicle.Model)) {
+                throw new ArgumentException("Model cannot be empty");
+            }
+        }
+        public Vehicle GetVehicleById(int id)
+        {
+            return _vehicleReposity.GetVehicleById(id);
+        }
+        public void UpdateVehicle(Vehicle vehicle)
+        {
+            if (string.IsNullOrWhiteSpace(vehicle.Model))
+            {
+                throw new ArgumentException("Model cannot be empty");
+            }
+            _vehicleReposity.UpdateVehicle(vehicle);
+        }
+        public void DeleteVehicle(int id)
+        {
+            _vehicleReposity.DeleteVehicle(id);
         }
     }
 }

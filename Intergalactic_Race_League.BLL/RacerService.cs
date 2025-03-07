@@ -16,7 +16,10 @@ namespace Intergalactic_Race_League.BLL
         }
         public void AddRacer(Racer racer)
         {
-
+            if(string.IsNullOrWhiteSpace(racer.DriverName))
+            {
+                throw new ArgumentException("Racer name cannot be empty");
+            }
         }
         public Racer GetRacerById(int id)
         {
@@ -24,11 +27,15 @@ namespace Intergalactic_Race_League.BLL
         }
         public void UpdateRacer(Racer racer)
         {
-            if (string.IsNullOrWhiteSpace(racer.Name))
+            if (string.IsNullOrWhiteSpace(racer.DriverName))
             {
                 throw new ArgumentException("Racer name cannot be empty");
             }
             _racerRepository.UpdateRacer(racer);
+        }
+        public void DeleteRacer(int id)
+        {
+            _racerRepository.DeleteRacer(id);
         }
 
     }

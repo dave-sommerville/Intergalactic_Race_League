@@ -30,12 +30,50 @@ namespace Intergalactic_Race_League.Controllers
             {
                 Vehicle newVehicle = new Vehicle
                 {
-                    // Add properties here
+                    //Need Id
+                    Model = vehicle.Model,
+                    Type = vehicle.Type
                 };
                 _vehicleService.AddVehicle(newVehicle);
                 return RedirectToAction("Index");
             }
             return View(vehicle);
+        }
+        [HttpGet]
+        public IActionResult Edit(int id)
+        {
+            Vehicle vehicle = _vehicleService.GetVehicleById(id);
+            if (vehicle == null)
+            {
+                return NotFound();
+            }
+            return View(vehicle);
+        }
+        [HttpPost]
+        public IActionResult Edit(Vehicle vehicle)
+        {
+            if(ModelState.IsValid)
+            {
+                return View(vehicle);
+            }
+            _vehicleService.UpdateVehicle(vehicle);
+            return RedirectToAction("Index");
+        }
+        [HttpGet]
+        public IActionResult Delete()
+        {
+            Vehicle vehicle = _vehicleService.GetVehicleById(id);
+            if(vehicle == null)
+            {
+                return NotFound();
+            }
+            return View(vehicle);
+        }
+        [HttpPost, ActionName("Delete")]
+        public IActionResult DeleteConfirmed(int id)
+        {
+            _vehicleService.DeleteVehicle(id);
+            return RedirectToAction("Index");
         }
     }
 }

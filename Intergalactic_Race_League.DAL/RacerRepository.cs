@@ -9,7 +9,7 @@ namespace Intergalactic_Race_League.DAL
         {
             _context = context;
         }
-
+        
         public List<Racer> GetAllRacers()
         {
             return _context.Racers.ToList();
@@ -18,6 +18,24 @@ namespace Intergalactic_Race_League.DAL
         {
             _context.Racers.Add(racer);
             _context.SaveChanges();
+        }
+        public Racer GetRacerById(int id)
+        {
+            return _context.Racers.Find(id);
+        }
+        public void UpdateRacer(Racer racer)
+        {
+            _context.Racers.Update(racer);
+            _context.SaveChanges();
+        }
+        public void DeleteRacer(int id)
+        {
+            Racer racer = _context.Racers.Find(id);
+            if (racer != null)
+            {
+                _context.Racers.Remove(racer);
+                _context.SaveChanges();
+            }
         }
     }
 }
