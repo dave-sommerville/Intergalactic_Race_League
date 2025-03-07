@@ -46,12 +46,12 @@ namespace Intergalactic_Race_League.Controllers
             {
                 newRacer.RacerId = _nextId++;
                 newRacer.Vehicle = VehicleController.GetVehicles().Where(s => selectedVehicle.Contains(v.VehicleId)).ToList();
-                newCase.CollectedEvidence = EvidenceController.GetEvidence().Where(s => selectedEvidence.Contains(s.EvidenceID)).ToList();
-                _case.Add(newCase);
+
                 return RedirectToAction("Index");
             }
-            return View(newCase);
+            return View();
         }
+
         // Need edit and delete
     }
 }

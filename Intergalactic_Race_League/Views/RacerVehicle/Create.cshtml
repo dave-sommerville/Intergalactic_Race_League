@@ -1,2 +1,22 @@
 ﻿@model Intergalactic_Race_League.Models.RacerVehicle
-<></>
+<h2>Create Racer and Vehicle</h2>
+<form asp-action="Create" method="post">
+	<h3>Racer Details</h3>
+	<div>
+		<label>Driver's Name</label>
+		<input asp-for="Racer" class="form-control" required/>
+	</div>
+	<div>
+		<label>Driver's height in CM</label>
+		<input asp-for="Racer" class="form-control" required />
+	</div>
+	<h3>Vehicle Details</h3>
+	<div>
+		<label>Model</label>
+		<input asp-for="Vehicle" class="form-control" required />
+	</div>
+	<div>
+		<label>Driver's height in CM</label>
+		<input asp-for="Vehicle" class="form-control" required />
+	</div>
+</form>

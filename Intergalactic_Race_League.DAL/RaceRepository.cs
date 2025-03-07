@@ -18,5 +18,14 @@ namespace Intergalactic_Race_League.DAL
             _context.Races.Add(race);
             _context.SaveChanges();
         }
+        public Racer GetRacerById(int id)
+        {
+            return _context.Racers.Find(id);
+        }
+        public void UpdateRacer(Racer racer)
+        {
+            _context.Racers.Update(racer);
+            _context.SaveChanges();
+        }
     }
 }

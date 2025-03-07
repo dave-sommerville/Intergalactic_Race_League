@@ -15,8 +15,21 @@ namespace Intergalactic_Race_League.BLL
         {
             return _racerVehicleRepository.GetAllRacerVehicles();
         }
-        public void AddRacerVehicle(RacerVehicle racerVehicle)
+        public void CreateRacerVehicle(RacerVehicle racerVehicle)
         {
+            Racer racer = new Racer
+            {
+                DriverName = racerVehicle.Racer.DriverName,
+                DriverHeightInCm = racerVehicle.Racer.DriverHeightInCm
+            };
+            Vehicle vehicle = new Vehicle
+            {
+                Model = racerVehicle.Vehicle.Model,
+                Type = racerVehicle.Vehicle.Type
+            };
+            _racerVehicleRepository.AddRacer(racer);
+            _racerVehicleRepository.AddVehicle(vehicle);
+            _racerVehicleRepository.SaveChanges();
 
         }
     }

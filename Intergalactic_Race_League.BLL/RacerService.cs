@@ -18,5 +18,18 @@ namespace Intergalactic_Race_League.BLL
         {
 
         }
+        public Racer GetRacerById(int id)
+        {
+            return _racerRepository.GetRacerById(id);
+        }
+        public void UpdateRacer(Racer racer)
+        {
+            if (string.IsNullOrWhiteSpace(racer.Name))
+            {
+                throw new ArgumentException("Racer name cannot be empty");
+            }
+            _racerRepository.UpdateRacer(racer);
+        }
+
     }
 }
