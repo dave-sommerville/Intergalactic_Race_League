@@ -1,12 +1,15 @@
-﻿namespace Intergalactic_Race_League.Models
+﻿using System.ComponentModel.DataAnnotations.Schema;
+using System.ComponentModel.DataAnnotations;
+
+namespace Intergalactic_Race_League.Models
 {
     public class Vehicle
     {
         private static int _nextId;
+        [Key]
         public int VehicleId { get; set; } 
         public string Model { get; set; }
         public string Type { get; set; }
-        public int RacerVehicleID { get; set; }
         public RacerVehicle RacerVehicle { get; set; }
         public Vehicle()
         {
