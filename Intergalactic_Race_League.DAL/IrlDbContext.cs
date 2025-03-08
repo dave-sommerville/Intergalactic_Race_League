@@ -15,7 +15,35 @@ namespace Intergalactic_Race_League.DAL
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
-
+            //  Relationships
+            //  One-to-many: Tournament <-> Race (starting and finishing)
+            modelBuilder.Entity<Tournament>()
+                .HasMany(t => t.AllRaces)
+                .WithOne(r => r.Tournament)
+                .HasForeignKey(r => r.TournamentId)
+                .OnDelete(DeleteBehavior.Cascade);
+            modelBuilder.Entity<Tournament>()
+            .HasMany(t => t.RankedRaces)
+            .WithOne(r => r.Tournament)
+            .HasForeignKey(r => r.TournamentId)
+            .OnDelete(DeleteBehavior.Cascade);
+            //  Two RacerVehicles per race
+            modelBuilder.Entity<Race>()
+                .HasOne(r => r.RacerOne)
+                .WithMany()
+                .HasForeignKey(r => r.RacerOneID)
+                .OnDelete(DeleteBehavior.Restrict);
+            modelBuilder.Entity<Race>()
+                .HasOne(r => r.RacerOne)
+                .WithMany()
+                .HasForeignKey(r => r.RacerOneID)
+                .OnDelete(DeleteBehavior.Restrict);
+            //  One-to-one: Race <-> RacerVehicle
+            modelBuilder.Entity<Racer>()
+                .HasOne(r => r.RacerVehicle)
+                .WithOne(rv => rv.Racer)
+                .HasForeignKey<RacerVehicle>(rv => rv.RacerId)
+                .OnDelete(DeleteBehavior.Cascade);
         }
     }
 }

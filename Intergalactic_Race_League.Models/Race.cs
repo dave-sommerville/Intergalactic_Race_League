@@ -8,8 +8,10 @@
         public string Status { get; set; }
         public DateTime TimeStamp { get; set; }
         public Tournament Tournament { get; set; }
-        public Racer RacerOne { get; set; }
-        public Racer RacerTwo { get; set; }
+        public int RacerOneID { get; set; }
+        public RacerVehicle RacerOne { get; set; }
+        public int RacerTwoId { get; set; }
+        public Racer RacerVehicle { get; set; }
         public Racer Winner { get; set; }
     }
 }

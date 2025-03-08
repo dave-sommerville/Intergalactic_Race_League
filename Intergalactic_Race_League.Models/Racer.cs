@@ -8,6 +8,8 @@
         public int DriverAge { get; set; }
         public int DriverHeightInCm { get; set; }
         public string DriverCountry { get; set; }
+        public int RacerVehicleId { get; set; }
+        public RacerVehicle RacerVehicle { get; set; }
 
         public Racer()
         {
