@@ -2,6 +2,7 @@ using Microsoft.EntityFrameworkCore;
 using Intergalactic_Race_League.DAL;
 using Intergalactic_Race_League.Models;
 using System;
+using Intergalactic_Race_League.BLL;
 
 namespace Intergalactic_Race_League
 {
@@ -13,6 +14,17 @@ namespace Intergalactic_Race_League
             // Configure EF Core with SQL Server
             builder.Services.AddDbContext<IrlDbContext>(options =>
                 options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection")));
+            builder.Services.AddScoped<RacerRepository>();
+            builder.Services.AddScoped<RacerVehicleRepository>();
+            builder.Services.AddScoped<VehicleRepository>();
+            builder.Services.AddScoped<RaceRepository>();
+            builder.Services.AddScoped<TournamentRepository>();
+
+            builder.Services.AddScoped<RacerVehicleService>();
+            builder.Services.AddScoped<RacerService>();
+            builder.Services.AddScoped<VehicleService>();
+            builder.Services.AddScoped<RaceService>();
+            builder.Services.AddScoped<TournamentService>();
 
             // Add services to the container.
             builder.Services.AddControllersWithViews();

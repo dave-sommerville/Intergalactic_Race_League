@@ -13,6 +13,10 @@ namespace Intergalactic_Race_League.DAL
         {
             return _context.Tournaments.ToList();
         }
+        public List<RacerVehicle> GetAllRacerVehicles()
+        {
+            return _context.RacerVehicles.ToList();
+        }
         public void AddTournament(Tournament tournament)
         {
             _context.Tournaments.Add(tournament);

@@ -1,0 +1,23 @@
+﻿@model IEnumerable<Tournament>
+<h1>All Tournaments</h1>
+<table class="table">
+	<thead>
+		<tr>
+			<th>Tournament Title</th>
+			<th>Status</th>
+			<th># of Races</th>
+			<th># of Racers</th>
+		</tr>
+	</thead>
+	<tbody>
+		@foreach (Tournament tournament in Model)
+		{
+			<tr>
+				<td>@tournament.Title</td>
+				<td>@tournament.Status</td>
+				<td>@tournament.AllRaces.Length</td>
+				<td>@tournament.RacerVehicles.Count</td>
+			</tr>
+		}
+	</tbody>
+</table>

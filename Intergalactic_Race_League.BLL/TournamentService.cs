@@ -6,16 +6,22 @@ namespace Intergalactic_Race_League.BLL
     public class TournamentService
     {
         private readonly TournamentRepository _tournamentRepository;
+        private readonly RacerVehicleRepository _racerVehicleRepository;
         // I think
         private readonly RaceRepository _raceRepository;
-        public TournamentService(TournamentRepository tournamentRepository, RaceRepository raceRepository)
+        public TournamentService(TournamentRepository tournamentRepository, RaceRepository raceRepository, RacerVehicleRepository racerVehicleRepository)
         {
             _tournamentRepository = tournamentRepository;
             _raceRepository = raceRepository;
+            _racerVehicleRepository = racerVehicleRepository;
         }
         public List<Tournament> GetTournaments()
         {
             return _tournamentRepository.GetAllTournamnets();
+        }
+        public List<RacerVehicle> GetRacerVehicles()
+        {
+            return _racerVehicleRepository.GetAllRacerVehicles();
         }
         public void AddTournament(Tournament tournament)
         {

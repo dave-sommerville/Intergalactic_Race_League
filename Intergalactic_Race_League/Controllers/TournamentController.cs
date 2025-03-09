@@ -8,22 +8,25 @@ namespace Intergalactic_Race_League.Controllers
     {
         private readonly TournamentService _tournamentService;
         private readonly RaceService _raceService;
-        public TournamentController(TournamentService tournamentService, RaceService raceService)
+        private readonly RacerVehicleService _racerVehicleService;
+        public TournamentController(TournamentService tournamentService, RaceService raceService, RacerVehicleService racerVehicleService)
         {
             _tournamentService = tournamentService;
             _raceService = raceService;
+            _racerVehicleService = racerVehicleService;
         }
         [HttpGet]
         public IActionResult Index()
         {
             List<Tournament> tournaments = _tournamentService.GetTournaments();
             return View(tournaments);
-        }
+        }/*
         [HttpGet]
         public IActionResult Create()
         {
-            return View();
-        }
+            List<RacerVehicleService> racerVehicleServices = _racerVehicleService.GetRacerVehicles();
+            return View(racerVehicleServices);
+        }*/
         [HttpPost]
         public IActionResult Create(Tournament tournament)
         {
