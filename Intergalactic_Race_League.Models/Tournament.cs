@@ -17,7 +17,7 @@ namespace Intergalactic_Race_League.Models
         public Race[] RankedRaces { get; set; }
         public Tournament()
         {
-            TournamentId = _nextId++;
+            //TournamentId = _nextId++;
         }
     }
 }

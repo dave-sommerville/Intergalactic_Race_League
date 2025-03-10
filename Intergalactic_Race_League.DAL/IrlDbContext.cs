@@ -6,26 +6,27 @@ namespace Intergalactic_Race_League.DAL
 {
     public class IrlDbContext : DbContext
     {
-        public IrlDbContext(DbContextOptions<IrlDbContext> options) : base(options) {   }
-        public DbSet<Racer> Racers { get; set; }
-        public DbSet<Tournament> Tournaments { get; set; }
-        public DbSet<Vehicle> Vehicles { get; set; }
-        public DbSet<Race> Races { get; set; }
-        public DbSet<RacerVehicle> RacerVehicles { get; set; }
+        public IrlDbContext(DbContextOptions<IrlDbContext> options) : base(options)
+        {
+        }
 
+        protected IrlDbContext()
+        {
+        }
+
+        public DbSet<Racer> Racers {get; set;}
+        public DbSet<Vehicle> Vehicles { get; set; }
+        public DbSet<RacerVehicle> RacerVehicles { get; set; }
+        public DbSet<Race> Races { get; set; }
+        public DbSet<Tournament> Tournaments {get; set;}
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             //  Primary Keys
-            modelBuilder.Entity<Vehicle>()
-                .HasKey(v => v.VehicleId);
-            modelBuilder.Entity<Racer>()
-                .HasKey(r => r.RacerId);
-            modelBuilder.Entity<RacerVehicle>()
-                .HasKey(rv => rv.RacerVehicleId);
-            modelBuilder.Entity<Race>()
-                .HasKey(r => r.RaceId);
-            modelBuilder.Entity<Tournament>()
-                .HasKey(r => r.TournamentId);
+            modelBuilder.Entity<Vehicle>().HasKey(v => v.VehicleId);
+            modelBuilder.Entity<Racer>().HasKey(r => r.RacerId);
+            modelBuilder.Entity<RacerVehicle>().HasKey(rv => rv.RacerVehicleId);
+            modelBuilder.Entity<Race>().HasKey(r => r.RaceId);
+            modelBuilder.Entity<Tournament>().HasKey(r => r.TournamentId);
             //  Relationships
             //  One-to-many: Tournament <-> Race (starting and finishing)
             modelBuilder.Entity<Tournament>()
@@ -33,11 +34,6 @@ namespace Intergalactic_Race_League.DAL
                 .WithOne(r => r.Tournament)
                 .HasForeignKey(r => r.TournamentId)
                 .OnDelete(DeleteBehavior.Cascade);
-            modelBuilder.Entity<Tournament>()
-            .HasMany(t => t.RankedRaces)
-            .WithOne(r => r.Tournament)
-            .HasForeignKey(r => r.TournamentId)
-            .OnDelete(DeleteBehavior.Cascade);
             //  Two RacerVehicles per race
             modelBuilder.Entity<Race>()
                 .HasOne(r => r.RacerOne)
@@ -48,6 +44,16 @@ namespace Intergalactic_Race_League.DAL
                 .HasOne(r => r.RacerOne)
                 .WithMany()
                 .HasForeignKey(r => r.RacerOneID)
+                .OnDelete(DeleteBehavior.Restrict);
+            modelBuilder.Entity<Race>()
+                .HasOne(r => r.RacerTwo)
+                .WithMany()
+                .HasForeignKey(r => r.RacerTwoId)
+                .OnDelete(DeleteBehavior.Restrict);
+            modelBuilder.Entity<Race>()
+                .HasOne(r => r.Winner)
+                .WithMany()
+                .HasForeignKey(r => r.WinnerId)
                 .OnDelete(DeleteBehavior.Restrict);
             //  One-to-one: Race <-> RacerVehicle
             modelBuilder.Entity<Racer>()
@@ -86,8 +92,6 @@ namespace Intergalactic_Race_League.DAL
                 .HasMaxLength(50);
             modelBuilder.Entity<Race>()
                 .Property(r => r.TimeStamp);
-            modelBuilder.Entity<Race>()
-                .Property(r => r.Winner);
             modelBuilder.Entity<Tournament>()
                 .Property(t => t.Status)
                 .IsRequired()

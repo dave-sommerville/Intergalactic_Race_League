@@ -19,12 +19,14 @@ namespace Intergalactic_Race_League.Models
         public RacerVehicle RacerOne { get; set; }
         [ForeignKey("RacerTwo")] // I think 
         public int RacerTwoId { get; set; }
-        public Racer RacerVehicle { get; set; }
-        public Racer Winner { get; set; }
+        public RacerVehicle RacerTwo { get; set; }
+        [ForeignKey("Winner")]
+        public int WinnerId { get; set; }
+        public RacerVehicle Winner { get; set; }
 
         public Race()
         {
-            RaceId = _nextId++;
+            //RaceId = _nextId++;
         }
     }
 }

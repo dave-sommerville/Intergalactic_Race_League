@@ -13,7 +13,7 @@ namespace Intergalactic_Race_League.Models
         public RacerVehicle RacerVehicle { get; set; }
         public Vehicle()
         {
-            VehicleId = _nextId++;
+            //VehicleId = _nextId++;
         }
 
     }

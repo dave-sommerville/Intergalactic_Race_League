@@ -16,7 +16,7 @@ namespace Intergalactic_Race_League.Models
 
         public Racer()
         {
-            RacerId = _nextId++;
+            //RacerId = _nextId++;
         }
     }
 }
