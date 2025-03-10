@@ -49,6 +49,31 @@ namespace Intergalactic_Race_League.Controllers
             }
             return View(racerVehicle);
         }
-
+        [HttpGet]
+        public IActionResult Edit(int id)
+        {
+            RacerVehicle racerVehicle = _racerVehicleService.GetRacerVehicleById(id);
+            if (racerVehicle == null)
+            {
+                return NotFound();
+            }
+            return View(racerVehicle);
+        }
+        [HttpPost]
+        public IActionResult Edit(RacerVehicle racerVehicle)
+        {
+            if(ModelState.IsValid)
+            {
+                _racerVehicleService.UpdateRacerVehicle(racerVehicle);
+                return RedirectToAction("Index");
+            }
+            return View(racerVehicle);
+        }
+        [HttpPost]
+        public IActionResult Delete(int id)
+        {
+            _racerVehicleService.DeleteRacerVehicle(id);
+            return RedirectToAction(nameof(Index));
+        }
     }
 }

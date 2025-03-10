@@ -19,6 +19,10 @@ namespace Intergalactic_Race_League.BLL
         {
             return _racerVehicleRepository.GetAllRacerVehicles();
         }
+        public RacerVehicle GetRacerVehicleById(int id)
+        {
+            return _racerVehicleRepository.GetRacerVehicleById(id);
+        }
         public void CreateRacerVehicle(RacerVehicle racerVehicle)
         {
             Racer racer = new Racer
@@ -38,6 +42,22 @@ namespace Intergalactic_Race_League.BLL
             _racerVehicleRepository.AddVehicle(vehicle);
             _racerVehicleRepository.SaveChanges();
 
+        }
+        public void UpdateRacerVehicle(RacerVehicle racerVehicle)
+        {
+            _racerVehicleRepository.AddRacer(racerVehicle.Racer);
+            _racerVehicleRepository.AddVehicle(racerVehicle.Vehicle);
+            _racerVehicleRepository.SaveChanges();
+        }
+        public void DeleteRacerVehicle(int id)
+        {
+            RacerVehicle racerVehicle = _racerVehicleRepository.GetRacerVehicleById(id);
+            if (racerVehicle != null)
+            {
+                _racerVehicleRepository.RemoveRacer(racerVehicle.Racer);
+                _racerVehicleRepository.RemoveVehicle(racerVehicle.Vehicle);
+                _racerVehicleRepository.SaveChanges();
+            }
         }
     }
 }

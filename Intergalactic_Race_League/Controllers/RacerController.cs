@@ -18,31 +18,7 @@ namespace Intergalactic_Race_League.Controllers
             List<Racer> racers = _racerService.GetRacers();
             return View(racers);
         }
-        [HttpGet]
-        public IActionResult Create()
-        {
-            //ViewBag. options 
-            return View();
-        }
-        [HttpPost]
-        public IActionResult Create(Racer racer)
-        {
-            if (ModelState.IsValid)
-            {
-                Racer newRacer = new Racer
-                {
-                    DriverName = racer.DriverName,
-                    DriverAge = racer.DriverAge,
-                    DriverHeightInCm = racer.DriverHeightInCm,
-                    DriverCountry = racer.DriverCountry
-                };
-                _racerService.AddRacer(newRacer);
-                return RedirectToAction("Index");
-            }
-            return View(racer);
-        }
-        [HttpGet]
-        public IActionResult Edit(int id)
+        public IActionResult Details(int id)
         {
             Racer racer = _racerService.GetRacerById(id);
             if (racer == null)
@@ -50,16 +26,6 @@ namespace Intergalactic_Race_League.Controllers
                 return NotFound();
             }
             return View(racer);
-        }
-        [HttpPost]
-        public IActionResult Edit(Racer racer)
-        {
-            if (ModelState.IsValid)
-            {
-                return View(racer);
-            }
-            _racerService.UpdateRacer(racer);
-            return RedirectToAction("Index");
         }
         [HttpGet]
         public IActionResult Delete(int id)
