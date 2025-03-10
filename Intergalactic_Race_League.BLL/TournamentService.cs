@@ -23,16 +23,20 @@ namespace Intergalactic_Race_League.BLL
         {
             return _racerVehicleRepository.GetAllRacerVehicles();
         }
+        public List<Race> GetRaces()
+        {
+            return _raceRepository.GetAllRaces();
+        }
+        public Tournament GetTournamentById(int id)
+        {
+            return _tournamentRepository.GetTournamentById(id);
+        }
         public void AddTournament(Tournament tournament)
         {
             if(string.IsNullOrWhiteSpace(tournament.Title))
             {
                 throw new ArgumentException("Tournament must have a title");
             }
-        }
-        public Tournament GetTournamentById(int id)
-        {
-            return _tournamentRepository.GetTournamentById(id);
         }
         public void UpdateTournament(Tournament tournament)
         {
@@ -42,7 +46,7 @@ namespace Intergalactic_Race_League.BLL
             }
             _tournamentRepository.UpdateTournament(tournament);
         }
-        public void DeleteRacer(int id)
+        public void DeleteTournament(int id)
         {
             _tournamentRepository.DeleteTournament(id);
         }

@@ -1,4 +1,5 @@
 ﻿using Intergalactic_Race_League.Models;
+using Microsoft.EntityFrameworkCore;
 
 namespace Intergalactic_Race_League.DAL
 {
@@ -17,6 +18,10 @@ namespace Intergalactic_Race_League.DAL
         {
             return _context.RacerVehicles.ToList();
         }
+        public List<Race> GetAllRaces()
+        {
+            return _context.Races.Include(r => r.RacerOne).Include(r => r.RacerTwo).Include(r => r.Winner).ToList();
+        }
         public void AddTournament(Tournament tournament)
         {
             _context.Tournaments.Add(tournament);
@@ -24,7 +29,12 @@ namespace Intergalactic_Race_League.DAL
         }
         public Tournament GetTournamentById(int id)
         {
-            return _context.Tournaments.Find(id);
+            return _context.Tournaments
+                .Include(t => t.RacerVehicles)
+                .ThenInclude(rv => rv.Racer)
+                .Include(t => t.RacerVehicles)
+                .ThenInclude(rv => rv.Vehicle)
+                .FirstOrDefault(t => t.TournamentId == id);
         }
         public void UpdateTournament(Tournament tournament)
         {

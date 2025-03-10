@@ -4,28 +4,28 @@
 	<h3>Racer Details</h3>
 	<div>
 		<label>Driver's Name</label>
-		<input asp-for="Racer" class="form-control" required/>
+		<input asp-for="Racer.DriverName" class="form-control" required/>
 	</div>
 	<div>
 		<label>Driver's Age</label>
-		<input asp-for="Racer" class="form-control" required />
+		<input asp-for="Racer.DriverAge" class="form-control" required />
 	</div>
 	<div>
 		<label>Driver's height in CM</label>
-		<input asp-for="Racer" class="form-control" required />
+		<input asp-for="Racer.DriverHeightInCm" class="form-control" required />
 	</div>
 	<div>
 		<label>Driver's Country</label>
-		<input asp-for="Racer" class="form-control" required />
+		<input asp-for="Racer.DriverCountry" class="form-control" required />
 	</div>
 	<h3>Vehicle Details</h3>
 	<div>
 		<label>Model</label>
-		<input asp-for="Vehicle" class="form-control" required />
+		<input asp-for="Vehicle.Model" class="form-control" required />
 	</div>
 	<div>
 		<label>Type</label>
-		<input asp-for="Vehicle" class="form-control" required />
+		<input asp-for="Vehicle.Type" class="form-control" required />
 	</div>
 	<button type="submit" class="btn btn-primary">Create</button>
 </form>

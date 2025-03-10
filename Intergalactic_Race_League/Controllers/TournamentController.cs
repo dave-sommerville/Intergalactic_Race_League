@@ -1,6 +1,7 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Intergalactic_Race_League.BLL;
 using Intergalactic_Race_League.Models;
+using Microsoft.AspNetCore.Mvc.Rendering;
 
 namespace Intergalactic_Race_League.Controllers
 {
@@ -20,26 +21,62 @@ namespace Intergalactic_Race_League.Controllers
         {
             List<Tournament> tournaments = _tournamentService.GetTournaments();
             return View(tournaments);
-        }/*
+        }
+        [HttpGet]
+        public IActionResult Details(int id)
+        {
+            Tournament tournament = _tournamentService.GetTournamentById(id);
+            if (tournament == null)
+            {
+                return NotFound();
+            }
+            ViewBag.Races = _tournamentService.GetRaces();
+            ViewBag.RacerVehicles = _tournamentService.GetRacerVehicles();
+            return View(tournament);
+        }
         [HttpGet]
         public IActionResult Create()
         {
-            List<RacerVehicleService> racerVehicleServices = _racerVehicleService.GetRacerVehicles();
-            return View(racerVehicleServices);
-        }*/
+            var racerVehicles = _racerVehicleService.GetRacerVehicles();
+            ViewBag.RacerVehicles = new SelectList(racerVehicles, "RacerVehicleId", "Racer.RacerName");
+            return View();
+        }
         [HttpPost]
-        public IActionResult Create(Tournament tournament)
+        public IActionResult Create(Tournament tournament, int[] selectedRacerVehicles)
         {
-            if(ModelState.IsValid)
+            if (ModelState.IsValid)
             {
-                Tournament newTournament = new Tournament
-                {
-                    // Add properties 
-                };
-                _tournamentService.AddTournament(newTournament);
-                return RedirectToAction("Index"); 
+                tournament.RacerVehicles = selectedRacerVehicles.Select(id => _racerVehicleService.GetRacerVehicleById(id)).ToList();
+                _tournamentService.AddTournament(tournament);
+                return RedirectToAction(nameof(Index));
             }
             return View(tournament);
+        }
+        [HttpGet]
+        public IActionResult Edit(int id)
+        {
+            Tournament tournament = _tournamentService.GetTournamentById(id);
+            if(tournament == null)
+            {
+                return NotFound();
+            }
+            return View(tournament);
+        }
+        [HttpPost]
+        public IActionResult Edit(Tournament tournament)
+        {
+            if (ModelState.IsValid)
+            {
+                _tournamentService.UpdateTournament(tournament);
+                return RedirectToAction(nameof(Index));
+            }
+            return View(tournament);
+        }
+        [HttpPost]
+        public IActionResult Delete(int id)
+        {
+            _tournamentService.DeleteTournament(id);
+            return RedirectToAction(nameof(Index));
         }
     }
 }

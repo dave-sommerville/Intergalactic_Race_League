@@ -27,25 +27,8 @@ namespace Intergalactic_Race_League.Controllers
         {
             if(ModelState.IsValid)
             {
-                Racer racer = new Racer
-                {
-                    DriverName = racerVehicle.Racer.DriverName,
-                    DriverAge = racerVehicle.Racer.DriverAge,
-                    DriverHeightInCm = racerVehicle.Racer.DriverHeightInCm,
-                    DriverCountry = racerVehicle.Racer.DriverCountry
-                };
-                Vehicle vehicle = new Vehicle
-                {
-                    Model = racerVehicle.Vehicle.Model,
-                    Type = racerVehicle.Vehicle.Type
-                };
-                RacerVehicle newRacerVehicle = new RacerVehicle
-                {
-                    VehicleId = vehicle.VehicleId,
-                    Vehicle = vehicle,
-                    RacerId = racer.RacerId,
-                    Racer = racer
-                };
+                _racerVehicleService.CreateRacerVehicle(racerVehicle);
+                return RedirectToAction(nameof(Index));
             }
             return View(racerVehicle);
         }

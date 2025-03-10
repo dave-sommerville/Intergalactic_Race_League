@@ -25,21 +25,8 @@ namespace Intergalactic_Race_League.BLL
         }
         public void CreateRacerVehicle(RacerVehicle racerVehicle)
         {
-            Racer racer = new Racer
-            {
-                DriverName = racerVehicle.Racer.DriverName,
-                DriverAge = racerVehicle.Racer.DriverAge,
-                DriverHeightInCm = racerVehicle.Racer.DriverHeightInCm,
-                DriverCountry = racerVehicle.Racer.DriverCountry
-
-            };
-            Vehicle vehicle = new Vehicle
-            {
-                Model = racerVehicle.Vehicle.Model,
-                Type = racerVehicle.Vehicle.Type
-            };
-            _racerVehicleRepository.AddRacer(racer);
-            _racerVehicleRepository.AddVehicle(vehicle);
+            _racerVehicleRepository.AddRacer(racerVehicle.Racer);
+            _racerVehicleRepository.AddVehicle(racerVehicle.Vehicle);
             _racerVehicleRepository.SaveChanges();
 
         }

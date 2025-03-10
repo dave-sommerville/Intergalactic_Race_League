@@ -1,14 +1,36 @@
-﻿
-@model Intergalactic_Race_League.Models.Tournament
-<h2>Create New Tournament</h2>
-<form asp-action="Create" method="post">
-	<h3>Tournament Details</h3>
-	<div>
-		<label>Tournament Title</label>
-		<input asp-for="Title" class="form-control" required/>
-	</div>
-	<div>
-		<label>Tournament Title</label>
-		<input asp-for="Title" class="form-control" required />
-	</div>
+﻿@model Tournament
+@{
+    ViewBag.Title = "Create Tournament";
+}
+
+<h1>Create Tournament</h1>
+
+<form asp-action="Create">
+    <div class="form-group">
+        <label asp-for="Title" class="control-label"></label>
+        <input asp-for="Title" class="form-control" />
+        <span asp-validation-for="Title" class="text-danger"></span>
+    </div>
+    <div class="form-group">
+        <label asp-for="Status" class="control-label"></label>
+        <input asp-for="Status" class="form-control" />
+        <span asp-validation-for="Status" class="text-danger"></span>
+    </div>
+    <div class="form-group">
+        <label asp-for="TimeStamp" class="control-label"></label>
+        <input asp-for="TimeStamp" class="form-control" />
+        <span asp-validation-for="TimeStamp" class="text-danger"></span>
+    </div>
+    <div class="form-group">
+        <label>Racer Vehicles</label>
+        <select asp-for="RacerVehicles" class="form-control" multiple="multiple">
+            @foreach (var item in ViewBag.RacerVehicles)
+            {
+                <option value="@item.Value">@item.Text</option>
+            }
+        </select>
+    </div>
+    <div class="form-group">
+        <input type="submit" value="Create" class="btn btn-primary" />
+    </div>
 </form>

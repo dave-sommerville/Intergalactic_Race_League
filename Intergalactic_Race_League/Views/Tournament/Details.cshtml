@@ -1,0 +1,73 @@
+﻿@model Tournament
+
+<h1>Tournament Details</h1>
+
+<div>
+    <h4>Tournament</h4>
+    <hr />
+    <dl class="row">
+        <dt class="col-sm-2">
+            Title
+        </dt>
+        <dd class="col-sm-10">
+            @Model.Title
+        </dd>
+        <dt class="col-sm-2">
+            Status
+        </dt>
+        <dd class="col-sm-10">
+            @Model.Status
+        </dd>
+        <dt class="col-sm-2">
+            TimeStamp
+        </dt>
+        <dd class="col-sm-10">
+            @Model.TimeStamp
+        </dd>
+    </dl>
+</div>
+
+<h2>Racer Vehicles</h2>
+<table class="table">
+    <thead>
+        <tr>
+            <th>Racer</th>
+            <th>Vehicle</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var rv in Model.RacerVehicles)
+        {
+            <tr>
+                <td>@rv.Racer.DriverName</td>
+                <td>@rv.Vehicle.Model</td>
+            </tr>
+        }
+    </tbody>
+</table>
+
+<h2>Races</h2>
+<table class="table">
+    <thead>
+        <tr>
+            <th>Race Name</th>
+            <th>Status</th>
+            <th>TimeStamp</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var race in ViewBag.Races)
+        {
+            <tr>
+                <td>@race.RaceName</td>
+                <td>@race.Status</td>
+                <td>@race.TimeStamp</td>
+            </tr>
+        }
+    </tbody>
+</table>
+
+<div>
+    <a asp-action="Edit" asp-route-id="@Model.TournamentId">Edit</a> |
+    <a asp-action="Index">Back to List</a>
+</div>
