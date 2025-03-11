@@ -5,7 +5,6 @@ namespace Intergalactic_Race_League.Models
 {
     public class RacerVehicle
     {
-        private static int _nextId;
         [Key]
         public int RacerVehicleId { get; set; }
         [ForeignKey("Racer")]
@@ -15,9 +14,5 @@ namespace Intergalactic_Race_League.Models
         public int VehicleId { get; set; }
         public Vehicle Vehicle { get; set; }
 
-        public RacerVehicle()
-        {
-            //RacerVehicleId = _nextId++;
-        }
     }
 }

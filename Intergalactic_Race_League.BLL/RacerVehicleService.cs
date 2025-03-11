@@ -25,16 +25,16 @@ namespace Intergalactic_Race_League.BLL
         }
         public void CreateRacerVehicle(RacerVehicle racerVehicle)
         {
-            _racerVehicleRepository.AddRacer(racerVehicle.Racer);
-            _racerVehicleRepository.AddVehicle(racerVehicle.Vehicle);
+            _racerRepository.AddRacer(racerVehicle.Racer);
+            _vehicleRepository.AddVehicle(racerVehicle.Vehicle);
             _racerVehicleRepository.AddRacerVehicle(racerVehicle);
             _racerVehicleRepository.SaveChanges();
 
         }
         public void UpdateRacerVehicle(RacerVehicle racerVehicle)
         {
-            _racerVehicleRepository.AddRacer(racerVehicle.Racer);
-            _racerVehicleRepository.AddVehicle(racerVehicle.Vehicle);
+            _racerRepository.AddRacer(racerVehicle.Racer);
+            _vehicleRepository.AddVehicle(racerVehicle.Vehicle);
             _racerVehicleRepository.SaveChanges();
         }
         public void DeleteRacerVehicle(int id)

@@ -6,19 +6,14 @@ namespace Intergalactic_Race_League.DAL
 {
     public class IrlDbContext : DbContext
     {
-        public IrlDbContext(DbContextOptions<IrlDbContext> options) : base(options)
-        {
-        }
+        public IrlDbContext(DbContextOptions<IrlDbContext> options) : base(options) { }
 
-        protected IrlDbContext()
-        {
-        }
-
-        public DbSet<Racer> Racers {get; set;}
+        public DbSet<Racer> Racers { get; set; }
         public DbSet<Vehicle> Vehicles { get; set; }
         public DbSet<RacerVehicle> RacerVehicles { get; set; }
         public DbSet<Race> Races { get; set; }
-        public DbSet<Tournament> Tournaments {get; set;}
+        public DbSet<Tournament> Tournaments { get; set; }
+
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             //  Primary Keys
@@ -26,7 +21,7 @@ namespace Intergalactic_Race_League.DAL
             modelBuilder.Entity<Racer>().HasKey(r => r.RacerId);
             modelBuilder.Entity<RacerVehicle>().HasKey(rv => rv.RacerVehicleId);
             modelBuilder.Entity<Race>().HasKey(r => r.RaceId);
-            modelBuilder.Entity<Tournament>().HasKey(r => r.TournamentId);
+            modelBuilder.Entity<Tournament>().HasKey(t => t.TournamentId);
             //  Relationships
             //  One-to-many: Tournament <-> Race (starting and finishing)
             modelBuilder.Entity<Tournament>()
@@ -35,11 +30,6 @@ namespace Intergalactic_Race_League.DAL
                 .HasForeignKey(r => r.TournamentId)
                 .OnDelete(DeleteBehavior.Cascade);
             //  Two RacerVehicles per race
-            modelBuilder.Entity<Race>()
-                .HasOne(r => r.RacerOne)
-                .WithMany()
-                .HasForeignKey(r => r.RacerOneID)
-                .OnDelete(DeleteBehavior.Restrict);
             modelBuilder.Entity<Race>()
                 .HasOne(r => r.RacerOne)
                 .WithMany()
@@ -98,7 +88,6 @@ namespace Intergalactic_Race_League.DAL
                 .HasMaxLength(50);
             modelBuilder.Entity<Tournament>()
                 .Property(t => t.TimeStamp);
-            // The Lists?? 
         }
     }
 }
