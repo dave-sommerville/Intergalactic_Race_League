@@ -1,15 +1,21 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Intergalactic_Race_League.BLL;
 using Intergalactic_Race_League.Models;
+using Microsoft.AspNetCore.Mvc.Rendering;
 
 namespace Intergalactic_Race_League.Controllers
 {
     public class RacerVehicleController : Controller
     {
         private readonly RacerVehicleService _racerVehicleService;
-        public RacerVehicleController(RacerVehicleService racerVehicleService)
+        private readonly RacerService _racerService;
+        private readonly VehicleService _vehicleService;
+
+        public RacerVehicleController(RacerVehicleService racerVehicleService, RacerService racerService, VehicleService vehicleService)
         {
             _racerVehicleService = racerVehicleService;
+            _racerService = racerService;
+            _vehicleService = vehicleService;
         }
         [HttpGet]
         public IActionResult Index()
@@ -17,19 +23,29 @@ namespace Intergalactic_Race_League.Controllers
             List<RacerVehicle> racerVehicles = _racerVehicleService.GetRacerVehicles();
             return View(racerVehicles);
         }
+
         [HttpGet]
         public IActionResult Create()
         {
+            var racers = _racerService.GetRacers();
+            var vehicles = _vehicleService.GetVehicles();
+            ViewBag.Racers = new SelectList(racers, "RacerId", "DriverName");
+            ViewBag.Vehicles = new SelectList(vehicles, "VehicleId", "Model");
             return View();
         }
+
         [HttpPost]
         public IActionResult Create(RacerVehicle racerVehicle)
         {
-            if(ModelState.IsValid)
+            if (ModelState.IsValid)
             {
                 _racerVehicleService.CreateRacerVehicle(racerVehicle);
                 return RedirectToAction(nameof(Index));
             }
+            var racers = _racerService.GetRacers();
+            var vehicles = _vehicleService.GetVehicles();
+            ViewBag.Racers = new SelectList(racers, "RacerId", "DriverName");
+            ViewBag.Vehicles = new SelectList(vehicles, "VehicleId", "Model");
             return View(racerVehicle);
         }
         [HttpGet]

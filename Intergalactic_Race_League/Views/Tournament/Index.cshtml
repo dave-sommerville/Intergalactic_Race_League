@@ -1,23 +1,31 @@
 ﻿@model IEnumerable<Tournament>
-<h1>All Tournaments</h1>
+
+<h1>Tournaments</h1>
+
 <table class="table">
-	<thead>
-		<tr>
-			<th>Tournament Title</th>
-			<th>Status</th>
-			<th># of Races</th>
-			<th># of Racers</th>
-		</tr>
-	</thead>
-	<tbody>
-		@foreach (Tournament tournament in Model)
-		{
-			<tr>
-				<td>@tournament.Title</td>
-				<td>@tournament.Status</td>
-				<td>@tournament.AllRaces.Length</td>
-				<td>@tournament.RacerVehicles.Count</td>
-			</tr>
-		}
-	</tbody>
+    <thead>
+        <tr>
+            <th>Title</th>
+            <th>Status</th>
+            <th>TimeStamp</th>
+            <th>Actions</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var tournament in Model)
+        {
+            <tr>
+                <td>@tournament.Title</td>
+                <td>@tournament.Status</td>
+                <td>@tournament.TimeStamp</td>
+                <td>
+                    <a asp-action="Details" asp-route-id="@tournament.TournamentId">Details</a> |
+                    <a asp-action="Edit" asp-route-id="@tournament.TournamentId">Edit</a> |
+                    <form asp-action="Delete" asp-route-id="@tournament.TournamentId" method="post" style="display:inline;">
+                        <button type="submit" class="btn btn-danger">Delete</button>
+                    </form>
+                </td>
+            </tr>
+        }
+    </tbody>
 </table>

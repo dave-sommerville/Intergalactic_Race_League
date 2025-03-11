@@ -15,7 +15,13 @@ builder.Services.AddDbContext<IrlDbContext>(options =>
 builder.Services.AddScoped<RacerRepository>();
 builder.Services.AddScoped<RacerVehicleRepository>();
 builder.Services.AddScoped<VehicleRepository>();
+builder.Services.AddScoped<TournamentRepository>();
+builder.Services.AddScoped<RaceRepository>();
+builder.Services.AddScoped<TournamentService>();
+builder.Services.AddScoped<RaceService>();
 builder.Services.AddScoped<RacerVehicleService>();
+builder.Services.AddScoped<RacerService>();
+builder.Services.AddScoped<VehicleService>();
 
 var app = builder.Build();
 

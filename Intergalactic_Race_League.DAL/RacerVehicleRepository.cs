@@ -12,7 +12,10 @@ namespace Intergalactic_Race_League.DAL
         }
         public List<RacerVehicle> GetAllRacerVehicles()
         {
-            return _context.RacerVehicles.ToList();
+            return _context.RacerVehicles
+                .Include(rv => rv.Racer)
+                .Include(rv => rv.Vehicle)
+                .ToList();
         }
         public RacerVehicle GetRacerVehicleById(int id)
         {
@@ -36,6 +39,10 @@ namespace Intergalactic_Race_League.DAL
         public void RemoveRacer(Racer racer)
         {
             _context.Racers.Remove(racer);
+        }
+        public void AddRacerVehicle(RacerVehicle racerVehicle)
+        {
+            _context.RacerVehicles.Add(racerVehicle);
         }
         public void RemoveRacerVehicle(RacerVehicle racerVehicle)
         {

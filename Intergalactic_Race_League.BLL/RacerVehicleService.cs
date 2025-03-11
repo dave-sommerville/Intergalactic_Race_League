@@ -27,6 +27,7 @@ namespace Intergalactic_Race_League.BLL
         {
             _racerVehicleRepository.AddRacer(racerVehicle.Racer);
             _racerVehicleRepository.AddVehicle(racerVehicle.Vehicle);
+            _racerVehicleRepository.AddRacerVehicle(racerVehicle);
             _racerVehicleRepository.SaveChanges();
 
         }
